@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Hub System Helper</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="login_to_ldap">Go To LDAP</string>
+    <string name="title_activity_display_the_login">Display_the_login</string>
+    <string name="title_activity_displat_the__ldap">Displat_the_LDAP</string>
+</resources>
