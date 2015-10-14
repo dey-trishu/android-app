@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.trishudey.hubsystemhelper.Activities.services.create.CreateHubActivity">
+
+    <TextView android:text="Create" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:id="@+id/headerCreate"
+        android:textStyle="bold|italic"
+        android:textSize="20dp" />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerCreate"
+        android:paddingTop="40dp"
+        android:hint="Name"
+        android:id="@+id/hubname"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hubname"
+        android:paddingTop="40dp"
+        android:hint="COC"
+        android:id="@+id/hubCOC"/>
+
+    <Spinner
+        android:id="@+id/hubType"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hubType"
+        android:paddingTop="40dp"
+        android:hint="Zone"
+        android:id="@+id/hubZone"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hubZone"
+        android:paddingTop="40dp"
+        android:hint="Facility Service Hub ID"
+        android:id="@+id/hubfacility"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Changes"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/save"/>
+
+</RelativeLayout>

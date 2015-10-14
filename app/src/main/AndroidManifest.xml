@@ -2,13 +2,28 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.abishekkrishnan.hubsystemhelper" >
 
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.MainActivity"
+            android:name="com.example.trishudey.hubsystemhelper.Activities.main.LoginPage"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,14 +32,124 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Displat_the_LDAP"
-            android:label="@string/title_activity_displat_the__ldap" >
+            android:name="com.example.trishudey.hubsystemhelper.Activities.main.Options_Page_Admin"
+            android:label="Hub System"
+            android:theme="@style/CustomActionBarTheme" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.NewActivity"
-            android:label="@string/title_activity_displat_the__ldap" >
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.create.CreateHubActivity"
+            android:label="@string/title_activity_create_hub" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.sortation.SortationRule"
+            android:label="@string/title_activity_sortation_rule" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.sortation.SortationFactor"
+            android:label="@string/title_activity_sortation_factor" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.create.BusinessPartner"
+            android:label="@string/title_activity_business_partner" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.HubActivity"
+            android:label="@string/title_activity_hub" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.accounts.ManageAccounts"
+            android:label="@string/title_activity_manage_accounts" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.HubPage"
+            android:label="@string/title_activity_hub_page" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.processingAreas.HubElements"
+            android:label="@string/title_activity_hub_elements" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.processingAreas.HubSubProcessingAreas"
+            android:label="@string/title_activity_hub_sub_processing_areas" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.processingAreas.AddProcessingArea"
+            android:label="@string/title_activity_add_processing_area" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.resources.ShowResource"
+            android:label="@string/title_activity_add_resource" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.resources.AddResourceContent"
+            android:label="@string/title_activity_add_resource_content" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.resources.MoveResource"
+            android:label="@string/title_activity_move_resource" >
+        </activity>
+        <!-- <activity -->
+        <!-- android:name="com.example.trishudey.hubsystemhelper.Activities.services.CaptureActivityAnyOrientation" -->
+        <!-- android:configChanges="orientation|keyboardHidden" -->
+        <!-- android:screenOrientation="landscape" -->
+        <!-- android:theme="@android:style/Theme.NoTitleBar.Fullscreen" -->
+        <!-- android:windowSoftInputMode="stateAlwaysHidden" > -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.zxing.client.android.SCAN" /> -->
+
+
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <!-- <activity android:name="com.dm.zbar.android.scanner.ZBarScannerActivity" -->
+        <!-- android:screenOrientation="landscape" -->
+        <!-- android:label="@string/app_name" /> -->
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.main.Authentication"
+            android:label="@string/title_activity_authentication" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.Facilities"
+            android:label="@string/title_activity_facilities" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.Show_Options_Facilities"
+            android:label="@string/title_activity_show__options__facilities" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.service.Service"
+            android:label="@string/title_activity_service" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.service.AddService"
+            android:label="@string/title_activity_add_service" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.service.GetService"
+            android:label="@string/title_activity_get_service" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.service.RemoveService"
+            android:label="@string/title_activity_remove_service" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.main.Options_Page_User"
+            android:label="@string/title_activity_options__page__user" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.Config"
+            android:label="@string/title_activity_config" >
+        </activity>
+        <activity
+            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.Show_Config"
+            android:label="@string/title_activity_show__config" >
         </activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

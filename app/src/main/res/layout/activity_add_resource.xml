@@ -1,0 +1,201 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.trishudey.hubsystemhelper.Activities.services.resources.ShowResource"
+    >
+
+    <TextView android:text="Resources" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resources"
+        android:textSize="20dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/resources"
+        android:id="@+id/scrollView">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/resources"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource1"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textStyle="italic"
+            android:textColor="#3d88e7" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button11"
+            android:text="Back"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="right" />
+
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource2"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:id="@+id/button12"
+            android:layout_gravity="right"
+
+            android:layout_alignTop="@+id/resources"
+            android:layout_centerHorizontal="true" />
+
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource3"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textStyle="italic"
+            android:textColor="#3d88e7" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource4"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource5"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textStyle="italic"
+            android:textColor="#3d88e7" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource6"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource7"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textStyle="italic"
+            android:textColor="#3d88e7" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource8"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource9"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textStyle="italic"
+            android:textColor="#3d88e7" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource10"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource11"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textStyle="italic"
+            android:textColor="#3d88e7" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource12"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource13"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource14"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource15"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+
+
+
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource16"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource17"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource18"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource19"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+        <TextView  android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/resource20"
+            android:textSize="20dp"
+            android:clickable="true"
+            android:textColor="#3d88e7"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

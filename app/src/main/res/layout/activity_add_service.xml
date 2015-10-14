@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context="com.example.trishudey.hubsystemhelper.Activities.services.service.AddService">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Service name"
+        android:id="@+id/service"
+
+        />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Merchant"
+        android:id="@+id/rule1"
+        android:layout_below="@+id/service"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="GoodsType"
+        android:id="@+id/rule2"
+        android:layout_alignBaseline="@+id/rule4"
+        android:layout_alignBottom="@+id/rule4"
+        android:layout_alignRight="@+id/service"
+        android:layout_alignEnd="@+id/service" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Vendor"
+        android:id="@+id/rule3"
+        android:layout_below="@+id/rule4"
+        android:layout_toRightOf="@+id/rule2"
+        android:layout_toEndOf="@+id/rule2" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="ProductCategory"
+        android:id="@+id/rule4"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/editText9"
+        android:layout_alignEnd="@+id/editText9" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="QOS"
+        android:id="@+id/editText8"
+        android:layout_above="@+id/editText10"
+        android:layout_toRightOf="@+id/button18"
+        android:layout_toEndOf="@+id/button18" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Size"
+        android:id="@+id/editText9"
+        android:layout_below="@+id/service"
+        android:layout_toRightOf="@+id/editText8"
+        android:layout_toEndOf="@+id/editText8"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Flow"
+        android:id="@+id/editText10"
+        android:layout_above="@+id/button18"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="80dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD RULE"
+        android:id="@+id/button18"
+        android:textStyle="italic"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
+
+</LinearLayout>

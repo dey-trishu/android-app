@@ -1,9 +1,51 @@
 <resources>
     <string name="app_name">Hub System Helper</string>
-
+    <string name="action_search">Search</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="login_to_ldap">Go To LDAP</string>
     <string name="title_activity_display_the_login">Display_the_login</string>
     <string name="title_activity_displat_the__ldap">Displat_the_LDAP</string>
+    <string name="title_activity_options__page">Options_Page</string>
+    <string name="title_activity_create_hub">CreateHubActivity</string>
+    <string name="title_activity_sortation_rule">SortationRule</string>
+    <string name="title_activity_sortation_factor">SortationFactor</string>
+    <string name="title_activity_business_partner">BusinessPartner</string>
+    <string name="title_activity_options__page__fragments">Options_Page_Fragments</string>
+    <string name="title_activity_manage_accounts_fragment">ManageAccountsFragment</string>
+    <string name="title_activity_hub">HubActivity</string>
+    <string name="title_activity_manage_accounts">ManageAccounts</string>
+    <string name="title_activity_hub_page">HubPage</string>
+    <string name="title_activity_hub_elements">HubElements</string>
+    <string name="title_activity_hub_sub_processing_areas">HubSubProcessingAreas</string>
+    <string name="title_activity_add_processing_area">AddProcessingArea</string>
+    <string name="title_activity_add_resource">AddResource</string>
+    <string name="title_activity_add_resource_content">AddResourceContent</string>
+    <string name="title_activity_move_resource">MoveResource</string>
+    <string name="title_activity_capture_activity_any_orientation">CaptureActivityAnyOrientation
+    </string>
+    <string name="title_activity_authentication">Authentication</string>
+    <string name="title_activity_facilities">Facilities</string>
+    <string name="title_activity_show__options__facilities">Show_Options_Facilities</string>
+    <string name="title_activity_service">Service</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="title_activity_add_service">AddService</string>
+    <string name="title_activity_get_service">GetService</string>
+    <string name="title_activity_remove_service">RemoveService</string>
+    <string name="title_activity_options__page__user">Options_Page_User</string>
+    <string name="title_activity_config">Config</string>
+    <string name="title_activity_show__config">Show_Config</string>
+    <color name="bright_pink">#FF007F</color>
+    <color name="red">#FF0000</color>
+    <color name="orange">#FF7F00</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="chartreuse">#7FFF00</color>
+    <color name="green">#00FF00</color>
+    <color name="spring_green">#00FF7F</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="azure">#007FFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="violet">#7F00FF</color>
+    <color name="magenta">#FF00FF</color>
 </resources>
