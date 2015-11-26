@@ -1,4 +1,4 @@
-package com.example.trishudey.hubsystemhelper.requests;
+package com.example.trishudey.hubsystemhelper.repositories;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
