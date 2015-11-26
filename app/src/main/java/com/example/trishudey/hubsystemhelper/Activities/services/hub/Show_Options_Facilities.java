@@ -2,14 +2,13 @@ package com.example.trishudey.hubsystemhelper.Activities.services.hub;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.R;
 
-import org.json.JSONObject;
+
 
 public class Show_Options_Facilities extends Activity {
 

@@ -2,11 +2,9 @@ package com.example.trishudey.hubsystemhelper.Activities.services.create;
 /**
  * creates a new hub
  */
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.StrictMode;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -20,9 +18,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.R;
 import com.example.trishudey.hubsystemhelper.Activities.main.Options_Page_Admin;
-import com.example.trishudey.hubsystemhelper.requests.PostToUrl;
+import com.example.trishudey.hubsystemhelper.repositories.GetData;
 
 public class CreateHubActivity extends Activity {
 
@@ -37,8 +35,8 @@ public class CreateHubActivity extends Activity {
     String Htype;
     String Hzone;
     String Hfacility;
+    GetData gd = new GetData();
 
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,13 +75,9 @@ public class CreateHubActivity extends Activity {
                 Hzone = zone.getText().toString();
                 Hfacility = facilityServiceHubId.getText().toString();
 
+                boolean res = gd.createHub(Hname, Hcoc, Htype, Hzone, Hfacility);
 
-                String url ="http://10.0.2.2:27015/v1/admin/addHub";
-                String params = "&name="+Hname+"&coc="+Hcoc+"&type="+Htype+"&zone="+Hzone+"&facilityServiceHubId="+Hfacility;
-
-                PostToUrl postToUrl = new PostToUrl();
-                int code = postToUrl.post(url,params);
-                    if(code == 200)
+                    if(res)
                     {
                         Context context = getApplicationContext();
                         CharSequence text = "Changes Saved";

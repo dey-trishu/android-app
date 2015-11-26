@@ -1,13 +1,15 @@
 package com.example.trishudey.hubsystemhelper.Activities.services.sortation;
 
-import android.annotation.TargetApi;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.widget.util.SortedListAdapterCallback;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,13 +21,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.R;
 import com.example.trishudey.hubsystemhelper.Activities.main.LoginPage;
 import com.example.trishudey.hubsystemhelper.Activities.main.Options_Page_Admin;
 import com.example.trishudey.hubsystemhelper.Activities.main.Options_Page_User;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,11 +61,9 @@ public class SortationRule extends Activity {
     JSONObject jObj;
     String url;
     String pUrl = "";
-    String shipmentId = null;
 
-    TextView text ;
 
-    int click=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -226,7 +225,7 @@ public class SortationRule extends Activity {
         });
         url = "http://hubsystem-app.nm.flipkart.com/v1/hub/sortationcode?";
         getSortationFactor.setOnClickListener(new View.OnClickListener() {
-            @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+
             @Override
             public void onClick(View v) {
 
@@ -239,7 +238,7 @@ public class SortationRule extends Activity {
 
 
                 try {
-                    HttpClient client = new DefaultHttpClient();
+
 
 
 
@@ -279,6 +278,7 @@ public class SortationRule extends Activity {
                             Intent intent = new Intent(SortationRule.this,SortationFactor.class);
                             intent.putExtra(EXTRA_MESSAGE, sortationcode);
                             startActivity(intent);
+                            SortationRule.this.finish();
                                 break;
                             default: Context context = getApplicationContext();
                                 CharSequence text = "Didn't recieve enough parameters";
@@ -293,13 +293,13 @@ public class SortationRule extends Activity {
                                 {
                                     Intent intent1 = new Intent(SortationRule.this,Options_Page_Admin.class);
                                     startActivity(intent1);
-                                    finish();
+                                    SortationRule.this.finish();
                                 }
                                 else
                                 {
                                     Intent intent1 = new Intent(SortationRule.this,Options_Page_User.class);
                                     startActivity(intent1);
-                                    finish();
+                                    SortationRule.this.finish();
                                 }
 
                         }
@@ -345,5 +345,24 @@ public class SortationRule extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        //Changes 'back' button action
+        if(keyCode== KeyEvent.KEYCODE_BACK)
+        {
+            if (LoginPage.user.equals("admin")) {
+                Intent in = new Intent(SortationRule.this,Options_Page_Admin.class);
+                startActivity(in);
+                finish();
+            }
+            else {
+                Intent in = new Intent(SortationRule.this,Options_Page_User.class);
+                startActivity(in);
+                finish();
+            }
+
+        }
+        return true;
     }
 }

@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
-import com.example.trishudey.hubsystemhelper.requests.PostToUrl;
+import com.example.trishudey.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.repositories.PostToUrl;
 
 public class MoveResource extends Activity {
 
@@ -60,7 +60,7 @@ public class MoveResource extends Activity {
             public void onClick(View v) {
                 processingAreaId = pId.getText().toString();
                 String param = "&resourceId="+resourceId+"&processingAreaId="+processingAreaId;
-                String url = "http://10.0.2.2:27015/v1/admin/moveResource";
+                String url = "http://hubsystem-app.nm.flipkart.com/v1/admin/moveResource";
                 PostToUrl post = new PostToUrl();
                 int code  = post.post(url,param);
                     if(code == 200)

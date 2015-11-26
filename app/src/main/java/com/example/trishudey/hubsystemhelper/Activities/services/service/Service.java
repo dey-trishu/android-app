@@ -16,7 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.R;
 
 public class Service extends Activity {
 
@@ -27,7 +27,7 @@ public class Service extends Activity {
     private String mActivityTitle;
 
 
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

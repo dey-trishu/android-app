@@ -16,10 +16,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.R;
 import com.example.trishudey.hubsystemhelper.Activities.main.LoginPage;
 import com.example.trishudey.hubsystemhelper.Activities.services.processingAreas.HubElements;
-import com.example.trishudey.hubsystemhelper.requests.JsonParser;
+import com.example.trishudey.hubsystemhelper.repositories.JsonParser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,8 +105,7 @@ public class ShowResource extends Activity {
                     @Override
                     public void onClick(View v) {
 
-                        if(LoginPage.user.equals("admin"))
-                        {
+
                             Intent in = new Intent(ShowResource.this,MoveResource.class);
                             try {
                                 in.putExtra("com.example.trishudey.MESSAGE",hub+"+"+PAid+"+"+jsonObject[finalJ].getString("id"));
@@ -114,16 +113,7 @@ public class ShowResource extends Activity {
                                 e.printStackTrace();
                             }
                             startActivity(in);
-                        }
-                        else {
-                            Context context = getApplicationContext();
-                            CharSequence text = "You are not an admin";
-                            int duration = Toast.LENGTH_SHORT;
-                            //Show a toast to inform the user
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
-                            toast.show();
-                        }
+
 
                     }
                 });

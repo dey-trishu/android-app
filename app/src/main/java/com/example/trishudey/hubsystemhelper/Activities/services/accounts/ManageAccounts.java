@@ -2,14 +2,12 @@ package com.example.trishudey.hubsystemhelper.Activities.services.accounts;
 /*
 Two options provided to user : 1. delete 2.change password
  */
-import android.annotation.TargetApi;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v4.widget.DrawerLayout;
@@ -23,31 +21,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
-import com.example.trishudey.hubsystemhelper.Activities.services.service.AddService;
-import com.example.trishudey.hubsystemhelper.Activities.services.service.GetService;
-import com.example.trishudey.hubsystemhelper.Activities.services.service.RemoveService;
+import com.example.trishudey.hubsystemhelper.R;
 import com.example.trishudey.hubsystemhelper.Activities.services.sortation.SortationRule;
+import com.example.trishudey.hubsystemhelper.repositories.GetData;
 import com.example.trishudey.hubsystemhelper.database.DBHelper;
-import com.example.trishudey.hubsystemhelper.encryption.MD5Encryption;
-import com.example.trishudey.hubsystemhelper.requests.PostToUrl;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.util.ArrayList;
 
-@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 public class ManageAccounts extends Activity {
     String delUser;
     String message;
@@ -57,6 +40,7 @@ public class ManageAccounts extends Activity {
     int here = 0;
     DBHelper userInformation;
     JSONObject jObj;
+    GetData gd = new GetData();
 
     DBHelper dbHelper;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -158,21 +142,11 @@ public class ManageAccounts extends Activity {
                     if (user.equals("admin")) {
 
                         delUser = name.getText().toString();
-                        URL u = null;
-                        try {
-                            u = new URL("http://10.0.2.2:8082/v1/admin/deleteUser/" + delUser);
-                            HttpURLConnection c = null;
-                            c = (HttpURLConnection) u.openConnection();
-                            c.setRequestMethod("GET");
-                            c.setRequestProperty("Content-length", "0");
-                            c.setUseCaches(false);
-                            c.setAllowUserInteraction(false);
-                            c.connect();
-                            System.out.print(c.getResponseMessage());
-                            String m = c.getResponseMessage();
-                            System.out.println(m);
-                            int status = c.getResponseCode();
-                            if (status == 200) {
+                        boolean status = gd.manageaccounts("Delete",delUser,"","");
+
+
+
+                            if (status) {
                                 Context context = getApplicationContext();
                                 CharSequence text = "Successfully Deleted";
                                 int duration = Toast.LENGTH_SHORT;
@@ -193,13 +167,7 @@ public class ManageAccounts extends Activity {
 
                                 toast.show();
                             }
-                        } catch (MalformedURLException e) {
-                            e.printStackTrace();
-                        } catch (ProtocolException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+
 
 
 
@@ -229,9 +197,9 @@ public class ManageAccounts extends Activity {
                     if (user.equals("admin")) {
 
                         String currUser = c_name.getText().toString();
-                        MD5Encryption md5Encryption = new MD5Encryption();
-                        String currPass = md5Encryption.MD5(c_pass.getText().toString());
-                        String newPass = md5Encryption.MD5(n_pass.getText().toString());
+
+                        String currPass = c_pass.getText().toString();
+                        String newPass = n_pass.getText().toString();
                         int check = 0;
                         if (currUser.isEmpty()) {
                             Context context = getApplicationContext();
@@ -256,60 +224,13 @@ public class ManageAccounts extends Activity {
                             toast.show();
                         }
                         if (check == 0) {
-                            URL u = null;
-                            try {
-                                u = new URL("http://10.0.2.2:8082/v1/admin/getCredentials/" + currUser);
-                                HttpURLConnection c = null;
-                                c = (HttpURLConnection) u.openConnection();
-                                c.setRequestMethod("GET");
-                                c.setRequestProperty("Content-length", "0");
-                                c.setUseCaches(false);
-                                c.setAllowUserInteraction(false);
-                                c.connect();
-                                System.out.print(c.getResponseMessage());
-                                String m = c.getResponseMessage();
-                                System.out.println(m);
-                                int status = c.getResponseCode();
-                                if (status == 200) {
-                                    BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-//                    inputStreamReader.close();
-                                    StringBuilder sb = new StringBuilder();
-                                    String line;
-                                    while ((line = br.readLine()) != null) {
-                                        sb.append(line + "\n");
-                                    }
-                                    br.close();
-                                    String json = sb.toString();
-
-                                    jObj = new JSONObject(json);
-                                    String password = jObj.getString("password");
-
-                                    if (password.equals(currPass)) {
-
-                                        URL u1 = null;
-                                        try {
-                                            u1 = new URL("http://10.0.2.2:8082/v1/admin/deleteUser/" + currUser);
-                                            HttpURLConnection c1 = null;
-                                            c1 = (HttpURLConnection) u1.openConnection();
-                                            c1.setRequestMethod("GET");
-                                            c1.setRequestProperty("Content-length", "0");
-                                            c1.setUseCaches(false);
-                                            c1.setAllowUserInteraction(false);
-                                            c1.connect();
-                                            System.out.print(c1.getResponseMessage());
-                                            String m1 = c1.getResponseMessage();
-                                            System.out.println(m1);
-                                            int status1 = c1.getResponseCode();
-                                            if (status1 == 200) {
 
 
-                                                String url = "http://10.0.2.2:8082/v1/admin/addCredentials";
-                                                String params = "&name=" + currUser + "&password=" + newPass;
-                                                PostToUrl postToUrl = new PostToUrl();
-                                                int code = postToUrl.post(url, params);
+                                boolean re = gd.manageaccounts("Update",currUser,currPass,newPass);
 
-                                                if (code == 200) {
 
+                                 if(re)
+                                 {
                                                     Context context = getApplicationContext();
                                                     CharSequence text = "User Updated";
                                                     int duration = Toast.LENGTH_SHORT;
@@ -334,48 +255,10 @@ public class ManageAccounts extends Activity {
 
                                             }
 
-                                        } catch (MalformedURLException e) {
-                                            e.printStackTrace();
-                                        } catch (ProtocolException e) {
-                                            e.printStackTrace();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-                                    } else {
-                                        Context context = getApplicationContext();
-                                        CharSequence text = "Current Password Invalid";
-                                        int duration = Toast.LENGTH_SHORT;
-
-                                        //Show a toast to inform the user
-                                        Toast toast = Toast.makeText(context, text, duration);
-                                        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
-
-                                        toast.show();
-                                    }
-                                } else {
-                                    Context context = getApplicationContext();
-                                    CharSequence text = "No such user";
-                                    int duration = Toast.LENGTH_SHORT;
-
-                                    //Show a toast to inform the user
-                                    Toast toast = Toast.makeText(context, text, duration);
-                                    toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
-
-                                    toast.show();
-                                }
-                            } catch (MalformedURLException e) {
-                                e.printStackTrace();
-                            } catch (ProtocolException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
                         }
                     }
 
-                }
+
             });
         }
         if(here ==1 && Mycase.equals("2"))
@@ -392,46 +275,18 @@ public class ManageAccounts extends Activity {
                     //get the password as entered by the user
                     //encrypt the password received
 
-                    MD5Encryption md5Encryption = new MD5Encryption();
-                    String password = md5Encryption.MD5(pass.getText().toString());
+
+                    String password = pass.getText().toString();
 
                     //gets the list of all the users present to inform the current user
                     //whether the user name has already been taken
 
-                    URL u = null;
-                    try {
-                        u = new URL("http://10.0.2.2:8082/v1/admin/getCredentials/" + username);
-                        HttpURLConnection c = null;
-                        c = (HttpURLConnection) u.openConnection();
-                        c.setRequestMethod("GET");
-                        c.setRequestProperty("Content-length", "0");
-                        c.setUseCaches(false);
-                        c.setAllowUserInteraction(false);
-                        c.connect();
-                        System.out.print(c.getResponseMessage());
-                        String m = c.getResponseMessage();
-                        System.out.println(m);
-                        int status = c.getResponseCode();
-                        if (user.equals("admin")) {
-                            if (status == 200) {
-                                Context context = getApplicationContext();
-                                CharSequence text = "User Exists";
-                                int duration = Toast.LENGTH_SHORT;
+                   boolean res = gd.manageaccounts("Add",username,pass.getText().toString(),"");
 
-                                //Show a toast to inform the user
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
 
-                                toast.show();
-                            } else {
-                                // Create a new map of values, where user names are the keys
-                                if (!username.isEmpty() && !pass.getText().toString().isEmpty() && pass.getText().toString().length() >= 8) {
-                                    String url = "http://10.0.2.2:8082/v1/admin/addCredentials";
-                                    String params = "&name=" + username + "&password=" + password;
-                                    PostToUrl postToUrl = new PostToUrl();
-                                    int code = postToUrl.post(url, params);
 
-                                    if (code == 200) {
+
+                                    if (res) {
 
                                         Context context = getApplicationContext();
                                         CharSequence text = "User Created";
@@ -453,57 +308,9 @@ public class ManageAccounts extends Activity {
 
                                         toast.show();
                                     }
-                                } else {
-                                    if (username.isEmpty()) {
-                                        Context context = getApplicationContext();
-                                        CharSequence text = "Username missing";
-                                        int duration = Toast.LENGTH_SHORT;
-
-                                        //Show a toast to inform the user
-                                        Toast toast = Toast.makeText(context, text, duration);
-                                        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
-
-                                        toast.show();
-                                    }
-                                    if (pass.getText().toString().length() < 8) {
-                                        Context context = getApplicationContext();
-                                        CharSequence text = "Password must be at least 8 characters long";
-                                        int duration = Toast.LENGTH_SHORT;
-
-                                        //Show a toast to inform the user
-                                        Toast toast = Toast.makeText(context, text, duration);
-                                        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
-
-                                        toast.show();
-                                    }
-
                                 }
 
-                            }
 
-                        } else {
-                            Context context = getApplicationContext();
-                            CharSequence text = "You are not an admin";
-                            int duration = Toast.LENGTH_SHORT;
-
-                            //Show a toast to inform the user
-                            Toast toast = Toast.makeText(context, text, duration);
-                            toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
-
-                            toast.show();
-                        }
-
-
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    } catch (ProtocolException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
             });
         }
 

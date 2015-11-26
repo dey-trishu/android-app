@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.abishekkrishnan.hubsystemhelper" >
+    package="com.example.trishudey.hubsystemhelper" >
 
     <uses-sdk
         android:minSdkVersion="7"
@@ -23,7 +23,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.main.LoginPage"
+            android:name=".Activities.main.LoginPage"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,60 +32,60 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.main.Options_Page_Admin"
+            android:name=".Activities.main.Options_Page_Admin"
             android:label="Hub System"
             android:theme="@style/CustomActionBarTheme" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.create.CreateHubActivity"
+            android:name=".Activities.services.create.CreateHubActivity"
             android:label="@string/title_activity_create_hub" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.sortation.SortationRule"
+            android:name=".Activities.services.sortation.SortationRule"
             android:label="@string/title_activity_sortation_rule" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.sortation.SortationFactor"
+            android:name=".Activities.services.sortation.SortationFactor"
             android:label="@string/title_activity_sortation_factor" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.create.BusinessPartner"
+            android:name=".Activities.services.create.BusinessPartner"
             android:label="@string/title_activity_business_partner" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.HubActivity"
+            android:name=".Activities.services.hub.HubActivity"
             android:label="@string/title_activity_hub" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.accounts.ManageAccounts"
+            android:name=".Activities.services.accounts.ManageAccounts"
             android:label="@string/title_activity_manage_accounts" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.HubPage"
+            android:name=".Activities.services.hub.HubPage"
             android:label="@string/title_activity_hub_page" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.processingAreas.HubElements"
+            android:name=".Activities.services.processingAreas.HubElements"
             android:label="@string/title_activity_hub_elements" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.processingAreas.HubSubProcessingAreas"
+            android:name=".Activities.services.processingAreas.HubSubProcessingAreas"
             android:label="@string/title_activity_hub_sub_processing_areas" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.processingAreas.AddProcessingArea"
+            android:name=".Activities.services.processingAreas.AddProcessingArea"
             android:label="@string/title_activity_add_processing_area" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.resources.ShowResource"
+            android:name=".Activities.services.resources.ShowResource"
             android:label="@string/title_activity_add_resource" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.resources.AddResourceContent"
+            android:name=".Activities.services.resources.AddResourceContent"
             android:label="@string/title_activity_add_resource_content" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.resources.MoveResource"
+            android:name=".Activities.services.resources.MoveResource"
             android:label="@string/title_activity_move_resource" >
         </activity>
         <!-- <activity -->
@@ -110,45 +110,54 @@
         <!-- <activity android:name="com.dm.zbar.android.scanner.ZBarScannerActivity" -->
         <!-- android:screenOrientation="landscape" -->
         <!-- android:label="@string/app_name" /> -->
+
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.main.Authentication"
-            android:label="@string/title_activity_authentication" >
-        </activity>
-        <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.Facilities"
+            android:name=".Activities.services.hub.Facilities"
             android:label="@string/title_activity_facilities" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.Show_Options_Facilities"
+            android:name=".Activities.services.hub.Show_Options_Facilities"
             android:label="@string/title_activity_show__options__facilities" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.service.Service"
+            android:name=".Activities.services.service.Service"
             android:label="@string/title_activity_service" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.service.AddService"
+            android:name=".Activities.services.service.AddService"
             android:label="@string/title_activity_add_service" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.service.GetService"
+            android:name=".Activities.services.service.GetService"
             android:label="@string/title_activity_get_service" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.service.RemoveService"
+            android:name=".Activities.services.service.RemoveService"
             android:label="@string/title_activity_remove_service" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.main.Options_Page_User"
+            android:name=".Activities.main.Options_Page_User"
             android:label="@string/title_activity_options__page__user" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.Config"
+            android:name=".Activities.services.hub.Config"
             android:label="@string/title_activity_config" >
         </activity>
         <activity
-            android:name="com.example.trishudey.hubsystemhelper.Activities.services.hub.Show_Config"
+            android:name=".Activities.services.hub.Show_Config"
             android:label="@string/title_activity_show__config" >
+        </activity>
+        <activity
+            android:name=".Activities.services.resources.AllResources"
+            android:label="@string/title_activity_all_resources" >
+        </activity>
+        <activity
+            android:name=".Activities.main.PieChart"
+            android:label="@string/title_activity_pie_chart" >
+        </activity>
+        <activity
+            android:name=".Activities.services.hub.D3"
+            android:label="@string/title_activity_d3" >
         </activity>
     </application>
 

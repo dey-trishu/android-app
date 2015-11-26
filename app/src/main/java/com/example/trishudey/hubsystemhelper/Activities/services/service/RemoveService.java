@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.R;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -31,7 +31,6 @@ public class RemoveService extends Activity {
 
     EditText remove;
     Button ok;
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +45,7 @@ public class RemoveService extends Activity {
             @Override
             public void onClick(View v) {
                 String name = remove.getText().toString();
-                String url1 ="http://10.0.2.2:27015/v1/admin/service/"+name+"/remove";
+                String url1 ="http://hubsystem-app.nm.flipkart.com/v1/admin/service/"+name+"/remove";
                 URL url = null;
                 try {
                     url = new URL(url1);

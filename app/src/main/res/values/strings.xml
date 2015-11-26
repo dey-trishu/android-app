@@ -48,4 +48,8 @@
     <color name="blue">#0000FF</color>
     <color name="violet">#7F00FF</color>
     <color name="magenta">#FF00FF</color>
+    <string name="title_activity_all_resources">AllResources</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_pie_chart">PieChart</string>
+    <string name="title_activity_d3">D3</string>
 </resources>

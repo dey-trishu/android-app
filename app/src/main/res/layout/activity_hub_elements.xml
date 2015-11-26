@@ -35,7 +35,7 @@
         android:id="@+id/imageButton4"
         android:layout_below="@+id/textView5"
         android:layout_alignParentLeft="true"
-        android:background="@drawable/blank" />
+        android:background = "@drawable/blank"/>
 
     <ImageButton
         android:layout_width="100dp"

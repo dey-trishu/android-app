@@ -17,21 +17,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
-import com.example.trishudey.hubsystemhelper.requests.PostToUrl;
+import com.example.trishudey.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.repositories.PostToUrl;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddProcessingArea extends Activity {
 
@@ -96,7 +85,7 @@ public class AddProcessingArea extends Activity {
 
                 //create a http client
                // HttpClient client = new DefaultHttpClient();
-                String url = "http://10.0.2.2:27015/v1/admin/addProcessingArea";
+                String url = "http://hubsystem-app.nm.flipkart.com/v1/admin/addProcessingArea";
                 //httpPost to post new data
               //  HttpPost httpPost = new HttpPost(url);
                 String params = "";

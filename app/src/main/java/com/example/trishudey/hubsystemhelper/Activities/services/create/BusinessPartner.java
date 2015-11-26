@@ -17,9 +17,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.R;
 import com.example.trishudey.hubsystemhelper.Activities.main.Options_Page_Admin;
-import com.example.trishudey.hubsystemhelper.requests.PostToUrl;
+import com.example.trishudey.hubsystemhelper.repositories.GetData;
 
 public class BusinessPartner extends Activity {
 
@@ -28,6 +28,7 @@ public class BusinessPartner extends Activity {
     EditText data;
     Button create;
     String selectedPartner;
+    GetData gd = new GetData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,15 +61,13 @@ public class BusinessPartner extends Activity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String id = installationId.getText().toString();
                 String data_entered = data.getText().toString();
-                String url = "http://10.0.2.2:27015/v1/admin/addProvider";
-                String params = "&type="+selectedPartner+"&installationId="+id+"&data="+data_entered;
 
-                PostToUrl postToUrl = new PostToUrl();
-                int code = postToUrl.post(url,params);
+                boolean res = gd.addBusinessPartner(selectedPartner, id, data_entered);
                     //200 OK proceed
-                    if(code == 200)
+                    if(res)
                     {
                         Context context = getApplicationContext();
                         CharSequence text = "Changes Saved";

@@ -3,11 +3,8 @@ package com.example.trishudey.hubsystemhelper.Activities.services.hub;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.repositories.GetData;
+import com.example.trishudey.hubsystemhelper.repositories.JsonGetResponse;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +30,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-import javax.net.ssl.HttpsURLConnection;
+
 
 public class Show_Config extends Activity {
 
@@ -39,14 +38,14 @@ public class Show_Config extends Activity {
     String selectedSlot;
     String selectedPA;
     String facilityId;
-    JSONObject jsonObject;
+
     JSONArray jsonArray;
     Spinner subPa;
-    String prev="";
+
     JSONObject jsonObject1[];
     TextView text[]= new TextView[284];
 
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -354,56 +353,21 @@ public class Show_Config extends Activity {
 
         subPa = (Spinner)findViewById(R.id.subPa);
 
-        String url = "http://hubsystem-app.nm.flipkart.com/v1/config/fetch?facilityId="+facilityId+"&slotId="+selectedSlot+"&processingAreaId="+selectedPA;
+        GetData gd = new GetData();
+        jsonObject1 = gd.getProcessArea(facilityId,selectedSlot,selectedPA);
+        JsonGetResponse jsonGetResponse = new JsonGetResponse();
 
-        HttpURLConnection c = null;
-        try {
-            URL u = new URL(url);
-            c = (HttpURLConnection) u.openConnection();
-            c.setRequestMethod("GET");
-            c.setRequestProperty("Content-length", "0");
-            c.setUseCaches(false);
-            c.setAllowUserInteraction(false);
-            c.connect();
-            int status = c.getResponseCode();
-            switch (status) {
-                case 200:
-                case 201:
-                    BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-                    br.close();
-                    String json = sb.toString();
-                    JSONObject jObj = new JSONObject(json);
-                    //select only first child of hub to display
-                    String st = jObj.getString("status");
-                    if (st.equals("200")) {
-                        jsonObject = jObj.getJSONObject("data");
-                        jsonArray = jsonObject.getJSONArray("config");
-                        jsonObject1 = new JSONObject[jsonArray.length()];
-                        String items[] = new String[jsonArray.length()+1];
 
-                        int j = 0;
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            jsonObject1[i] = jsonArray.getJSONObject(i);
-                            if(!prev.equals(jsonObject1[i].getString("processingAreaId")))
-                            {
-                                items[j+1] = jsonObject1[i].getString("processingAreaId");
-                                j++;
-                            }
-                            prev = jsonObject1[i].getString("processingAreaId");
 
-                        }
-                        items[0] ="Select Processing area";
-                        String put[] = new String [j+1];
-                        for(int i=0;i<=j;i++)
+
+
+                        jsonGetResponse.items[0] ="Select Processing area";
+                        String put[] = new String [jsonGetResponse.j+1];
+                        for(int i=0;i<=jsonGetResponse.j;i++)
                         {
-                            put[i] = items[i];
+                            put[i] = jsonGetResponse.items[i];
                         }
-
+                        final int[] index = new int[1];
                         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, put);
                         subPa.setAdapter(adapter);
                         subPa.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -412,7 +376,13 @@ public class Show_Config extends Activity {
                                 String pa = (String) parent.getItemAtPosition(position);
                                 if(!pa.equals("Select Processing area"))
                                 {
+                                    for(int i = 0;i<283;i++)
+                                    {
+                                        text[i].setText("");
+
+                                    }
                                     int j = 0;
+                                    int enter = 0;
                                     for(int i=0;i<jsonArray.length();i++)
                                     {
 
@@ -432,8 +402,14 @@ public class Show_Config extends Activity {
                                                     add = add +"\nFLOW : "+jsonObject1[i].getString("flow");
                                                 add = add+"\n-------------------------------------------";
 
-                                                text[j].setText(add);
-                                                j++;
+                                                text[j].setVisibility(view.VISIBLE);
+                                                text[j].setText(text[j].getText()+"\n"+add);
+                                                enter++;
+                                                if(enter%3==0)
+                                                {
+                                                    j++;
+                                                    index[0] =i;
+                                                }
                                             }
 
                                         } catch (JSONException e) {
@@ -443,10 +419,23 @@ public class Show_Config extends Activity {
 
 
                                     }
-                                    for(int i = j;i<221;i++)
+                                    if(j>0)
                                     {
-                                        text[i].setText("");
+                                        for(int i = j;i<283;i++)
+                                        {
+                                            text[i].setVisibility(view.INVISIBLE);
+                                        }
                                     }
+                                    else {
+                                        for(int i = j+1;i<283;i++)
+                                        {
+                                            text[i].setVisibility(view.INVISIBLE);
+                                        }
+                                    }
+
+
+
+
 
                                 }
 
@@ -460,17 +449,9 @@ public class Show_Config extends Activity {
 
 
                     }
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

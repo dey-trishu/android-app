@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.R;
 import com.example.trishudey.hubsystemhelper.Activities.main.LoginPage;
 import com.example.trishudey.hubsystemhelper.Activities.main.Options_Page_Admin;
 import com.example.trishudey.hubsystemhelper.Activities.main.Options_Page_User;
@@ -36,12 +36,14 @@ public class SortationFactor extends Activity {
                 {
                     Intent intent = new Intent(SortationFactor.this,Options_Page_Admin.class);
                     startActivity(intent);
-                    finish();
+                    SortationFactor.this.finish();
+
                 }
                 else {
                     Intent intent = new Intent(SortationFactor.this,Options_Page_User.class);
                     startActivity(intent);
-                    finish();
+                    SortationFactor.this.finish();
+
                 }
 
             }

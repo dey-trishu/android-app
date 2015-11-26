@@ -1,12 +1,9 @@
 package com.example.trishudey.hubsystemhelper.Activities.services.service;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -20,8 +17,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
-import com.example.trishudey.hubsystemhelper.requests.JsonParser;
+import com.example.trishudey.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.Activities.main.LoginPage;
+import com.example.trishudey.hubsystemhelper.Activities.main.Options_Page_User;
+import com.example.trishudey.hubsystemhelper.repositories.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +35,6 @@ public class GetService extends Activity {
     JSONArray jArray;
     JSONObject jObj[];
     TextView text;
-    @TargetApi(Build.VERSION_CODES.GINGERBREAD)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +61,7 @@ public class GetService extends Activity {
                         ok.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                String url = "http://10.0.2.2:27015/v1/admin/service/" + name.getText().toString();
+                                String url = "http://hubsystem-app.nm.flipkart.com/v1/admin/service/" + name.getText().toString();
                                 JsonParser parser = new JsonParser();
                                 jsonObject = parser.getJSONFromUrl(url);
                                 if(jsonObject.length != 0) {
@@ -104,9 +102,18 @@ public class GetService extends Activity {
                                     toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
 
                                     toast.show();
-                                    Intent intent = new Intent(GetService.this,Service.class);
-                                    startActivity(intent);
-                                    finish();
+                                    if(LoginPage.user.equals("admin"))
+                                    {
+                                        Intent intent = new Intent(GetService.this,Service.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    else {
+                                        Intent intent = new Intent(GetService.this,Options_Page_User.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
                                 }
                             }
                         });
@@ -118,7 +125,7 @@ public class GetService extends Activity {
                         ok.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                String url = "http://10.0.2.2:27015/v1/admin/service";
+                                String url = "http://hubsystem-app.nm.flipkart.com/v1/admin/service";
                                 text.setText("");
                                 name.setVisibility(v.INVISIBLE);
                                 JsonParser parser = new JsonParser();

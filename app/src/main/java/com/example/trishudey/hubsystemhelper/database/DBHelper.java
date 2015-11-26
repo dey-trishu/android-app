@@ -7,14 +7,11 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by trishu.dey on 11/09/15.
  */
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteDatabase;
+
 
 public class DBHelper extends SQLiteOpenHelper {
 

@@ -1,7 +1,6 @@
 package com.example.trishudey.hubsystemhelper.Activities.services.resources;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,8 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
-import com.example.trishudey.hubsystemhelper.requests.JsonParser;
+import com.example.trishudey.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.repositories.JsonParser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -180,9 +179,9 @@ public class AllResources extends Activity {
                 String select = (String) parent.getItemAtPosition(position);
                 if(select != "Select provider")
                 {
-                    for(int j=0;j<62;j++)
+                    for(int i=0;i<139;i++)
                     {
-                        text[j].setText("");
+                        text[i].setText("");
                     }
                     int k = 0;
                     int time =0;
@@ -191,9 +190,10 @@ public class AllResources extends Activity {
                         try {
                             if(jsonObject[i].getString("type").equals(select))
                             {
+                                    text[k].setVisibility(view.VISIBLE);
                                     text[k].setText(text[k].getText()+"\nProvider ID : " + jsonObject[i].getString("providerId")+"\nProcessing area :"+jsonObject[i].getString("processingAreaId")+"\n----------------------------------------------");
                                 time++;
-                                if(time==5)
+                                if(time==7)
                                 {
                                     k++;
                                     time = 0;
@@ -202,6 +202,11 @@ public class AllResources extends Activity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                    }
+                    for(int j=k+1;j<140;j++)
+                    {
+                        text[j].setVisibility(view.INVISIBLE);
+
                     }
                 }
             }

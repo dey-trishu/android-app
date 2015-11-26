@@ -1,14 +1,13 @@
 package com.example.trishudey.hubsystemhelper.Activities.main;
 
-import android.annotation.TargetApi;
+
 import android.app.Activity;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.support.design.widget.TextInputLayout;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
@@ -16,31 +15,19 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
-import com.example.trishudey.hubsystemhelper.database.DBHelper;
+
+import com.example.trishudey.hubsystemhelper.R;
 import com.example.trishudey.hubsystemhelper.encryption.MD5Encryption;
+import com.example.trishudey.hubsystemhelper.repositories.GetData;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Shows the Login Page to the user .
  * Gets username and password , if valid proceed to next screen.
- * Created by trishu.dey on 26/08/15.
+ * Created by trishu.dey on 08/09/15.
  */
 
-@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+
 public class LoginPage extends Activity {
     public final static String EXTRA_MESSAGE = "com.example.trishudey.MESSAGE";
     public Button Btngetdata1;
@@ -49,8 +36,20 @@ public class LoginPage extends Activity {
     public static String user = null;
     public static String pass = null;
     public static ProgressBar progressBar ;
-    JSONObject jObj;
 
+    private static TextInputLayout idLayout;
+    private static TextInputLayout passLayout;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        //Changes 'back' button action
+        if(keyCode== KeyEvent.KEYCODE_BACK)
+        {
+            LoginPage.this.finish();
+
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +62,7 @@ public class LoginPage extends Activity {
         username = (EditText) findViewById(R.id.username);
         //link to the password edit text box
         password = (EditText) findViewById(R.id.password);
+
 
 //        userInformation = new DBHelper(this);
 //        // Gets the data repository in write mode
@@ -91,40 +91,12 @@ public class LoginPage extends Activity {
                 System.out.println(pass);
                 // Create a new map of values, where column names are the keys
 
-                try {
-                    URL u = new URL("http://10.0.2.2:8082/v1/admin/getCredentials/"+user);
-                    HttpURLConnection c = null;
-                    c = (HttpURLConnection) u.openConnection();
-                    c.setRequestMethod("GET");
-                    c.setRequestProperty("Content-length", "0");
-                    c.setUseCaches(false);
-                    c.setAllowUserInteraction(false);
-                    c.connect();
-                    System.out.print(c.getResponseMessage());
-                    String m = c.getResponseMessage();
-                    System.out.println(m);
-                    int status = c.getResponseCode();
-                    if(status == 200)
-                    {
-                        BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
-                        StringBuilder sb = new StringBuilder();
-                        String line;
-                        while ((line = br.readLine()) != null) {
-                            sb.append(line+"\n");
-                        }
-                        br.close();
-                        String json = sb.toString();
+                GetData gd = new GetData();
+                boolean response = gd.validate(user,pass);
 
-                            jObj = new JSONObject(json);
-                        String password = jObj.getString("password");
+                if(response)
+                {
 
-                        if(password.equals(pass))
-                        {
-                            progressBar.setVisibility(View.VISIBLE);
-                            /**
-                             * separate pages for admin and normal user
-                             * more facilities to admin
-                             */
                             if(user.equals("admin"))
                             {
                                 Intent next_intent = new Intent(LoginPage.this, Options_Page_Admin.class);
@@ -140,8 +112,8 @@ public class LoginPage extends Activity {
                                 finish();
 
                             }
-                        }
-                        else{
+                }
+                else{
                             Context context = getApplicationContext();
                             CharSequence text = "Wrong username or password";
                             int duration = Toast.LENGTH_SHORT;
@@ -152,79 +124,11 @@ public class LoginPage extends Activity {
                             progressBar.setVisibility(View.GONE);
                         }
                     }
-                    else{
-                        Context context = getApplicationContext();
-                        CharSequence text = "Wrong username or password";
-                        int duration = Toast.LENGTH_SHORT;
-                        //Show a toast to inform the user
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
-                        toast.show();
-                        progressBar.setVisibility(View.GONE);
-                    }
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (ProtocolException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-//                Cursor cursor = userInformation.getData(user, pass);
-//                int numRows = cursor.getCount();
-//
-//                if(numRows == 0)
-//                {
-//                    Context context = getApplicationContext();
-//                    CharSequence text = "Wrong username or password";
-//                    int duration = Toast.LENGTH_SHORT;
-//                    //Show a toast to inform the user
-//                    Toast toast = Toast.makeText(context, text, duration);
-//                    toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
-//                    toast.show();
-//                    progressBar.setVisibility(View.GONE);
-//                }
-//                else {
-//                cursor.moveToFirst();
-//                int colmIndex = cursor.getColumnIndex("password");
-//                String x = cursor.getString(colmIndex);
-//
-//                System.out.println(pass);
-//                if (x.equals(pass)) {
-//
-//                    progressBar.setVisibility(View.VISIBLE);
-//                    /**
-//                     * separate pages for admin and normal user
-//                     * more facilities to admin
-//                     */
-//                    if(user.equals("admin"))
-//                    {
-//                        Intent next_intent = new Intent(LoginPage.this, Options_Page_Admin.class);
-//                        next_intent.putExtra(EXTRA_MESSAGE, user + "+" + pass);
-//                        startActivity(next_intent);
-//                        finish();
-//                    }
-//                    else
-//                    {
-//                        Intent next_intent = new Intent(LoginPage.this, Options_Page_User.class);
-//                        next_intent.putExtra(EXTRA_MESSAGE, user + "+" + pass);
-//                        startActivity(next_intent);
-//                        finish();
-//
-//                    }
-//
-//                }
-//
-//                }
-
-            }
-
-        });
 
 
-    }
+    });
 
+}
 }
 
 

@@ -1,9 +1,7 @@
 package com.example.trishudey.hubsystemhelper.Activities.services.hub;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.StrictMode;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,11 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.abishekkrishnan.hubsystemhelper.R;
-import com.example.trishudey.hubsystemhelper.requests.JsonParser;
+import com.example.trishudey.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.repositories.JsonParser;
 
 import org.json.JSONObject;
-@TargetApi(Build.VERSION_CODES.GINGERBREAD)
+
 public class Facilities extends Activity {
     EditText text ;
     Button ok;
@@ -41,6 +39,7 @@ public class Facilities extends Activity {
                 Intent intent = new Intent(Facilities.this,Show_Options_Facilities.class);
                 intent.putExtra("facility",jsonObject);
                 startActivity(intent);
+                finish();
 
             }
         });

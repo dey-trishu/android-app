@@ -11,8 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.example.abishekkrishnan.hubsystemhelper.R;
+import com.example.trishudey.hubsystemhelper.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -180,7 +179,7 @@ public class AddService extends Activity {
                 try {
 
 
-                    URL url = new URL("http://10.0.2.2:27015/v1/admin/service/" + serv + "/add");
+                    URL url = new URL("http://hubsystem-app.nm.flipkart.com/v1/admin/service/" + serv + "/add");
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("POST");
                     conn.setRequestProperty("Content-Type",
