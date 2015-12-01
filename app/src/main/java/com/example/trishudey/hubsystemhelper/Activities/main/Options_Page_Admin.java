@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.StrictMode;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,6 +33,11 @@ import com.example.trishudey.hubsystemhelper.repositories.GetData;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+
 /*
 Lists the options (activities) available to the user
  */
@@ -74,8 +80,8 @@ public class Options_Page_Admin extends ActionBarActivity {
                 hubs[i] = jsonObject[i - 1].getString("name");
                 type[i] = jsonObject[i-1].getString("type");
                 coc[i] = jsonObject[i-1].getString("coc");
-            } catch (JSONException e) {
-                e.printStackTrace();
+            }  catch (JSONException e) {
+                Log.d("Json", "Exception");
             }
         }
         items = hubs;

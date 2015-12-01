@@ -43,6 +43,7 @@ public class HubPage extends Activity {
     private TextView textView;
     String message;
     String hubId;
+    String facility;
     public static Spinner dropdown;
     public final static String EXTRA_MESSAGE = "com.example.trishudey.MESSAGE";
     @Override
@@ -52,6 +53,7 @@ public class HubPage extends Activity {
         Intent intent = getIntent();
         message = intent.getStringExtra(EXTRA_MESSAGE);
         hubId = intent.getStringExtra("hubId");
+        facility = intent.getStringExtra("facility");
         String m = intent.getStringExtra(EXTRA_MESSAGE);
         m = m + " " +intent.getStringExtra("type");
         m = m + " " +intent.getStringExtra("coc");
@@ -74,6 +76,7 @@ public class HubPage extends Activity {
                     intent2.putExtra(EXTRA_MESSAGE, message);
                     intent2.putExtra("hubId", hubId);
                     intent2.putExtra("task",select);
+                    intent2.putExtra("facility",facility);
                     startActivity(intent2);
 
                 }

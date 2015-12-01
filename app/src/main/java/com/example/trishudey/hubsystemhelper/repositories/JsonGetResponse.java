@@ -9,8 +9,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -93,11 +96,11 @@ public class JsonGetResponse {
                 return true;
             c.disconnect();
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Log.d("Malformed Url", "Exception");
         } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("Protocol", "Exception");
+        }  catch (IOException e) {
+            Log.d("I/O", "Exception");
         }
         return false;
     }
@@ -158,23 +161,23 @@ public class JsonGetResponse {
                             }
                         }
                     } catch (MalformedURLException e) {
-                        e.printStackTrace();
+                        Log.d("Malformed Url", "Exception");
                     } catch (ProtocolException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        Log.d("Protocol", "Exception");
+                    }  catch (IOException e) {
+                        Log.d("I/O", "Exception");
                     }
                 }
             }
             c.disconnect();
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Log.d("Malformed Url", "Exception");
         } catch (ProtocolException e) {
-            e.printStackTrace();
+            Log.d("Protocol", "Exception");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.d("Json", "Exception");
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("I/O", "Exception");
         }
         return false;
     }
@@ -208,11 +211,11 @@ public class JsonGetResponse {
 
             }
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Log.d("Malformed Url", "Exception");
         } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("Protocol", "Exception");
+        }  catch (IOException e) {
+            Log.d("I/O", "Exception");
         }
         return false;
     }
@@ -260,13 +263,13 @@ public class JsonGetResponse {
             }
             c.disconnect();
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Log.d("Malformed Url", "Exception");
         } catch (ProtocolException e) {
-            e.printStackTrace();
+            Log.d("Protocol", "Exception");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.d("Json", "Exception");
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("I/O", "Exception");
         }
         return time;
     }
@@ -309,13 +312,13 @@ public class JsonGetResponse {
             }
 
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Log.d("Malformed Url", "Exception");
         } catch (ProtocolException e) {
-            e.printStackTrace();
+            Log.d("Protocol", "Exception");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.d("Json", "Exception");
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("I/O", "Exception");
         }
         return PA;
     }
@@ -363,13 +366,13 @@ public class JsonGetResponse {
                     }
             }
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            Log.d("Malformed Url", "Exception");
         } catch (ProtocolException e) {
-            e.printStackTrace();
+            Log.d("Protocol", "Exception");
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.d("Json", "Exception");
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("I/O", "Exception");
         }
         return jsonObject1;
     }
@@ -403,14 +406,124 @@ public class JsonGetResponse {
                     jArray = jObj.getJSONArray("processingAreas");
             }
         } catch (MalformedURLException e) {
+            Log.d("Malformed Url", "Exception");
+        } catch (ProtocolException e) {
+            Log.d("Protocol", "Exception");
+        } catch (JSONException e) {
+            Log.d("Json", "Exception");
+        } catch (IOException e) {
+            Log.d("I/O", "Exception");
+        }
+        return jArray;
+    }
+
+    public static String[] getAreaDetails(String trackingId,String facility,String area)
+    {
+        String data[] = new String[4];
+        String url = "http://flo-fkl-app2.stage.ch.flipkart.com:27015/v1/hos/nextProcessingArea/"+facility+"/trackingId/"+trackingId+"?processingAreaId="+area;
+        HttpURLConnection c = null;
+        try {
+            URL u = new URL(url);
+            c = (HttpURLConnection) u.openConnection();
+            c.setRequestMethod("POST");
+            c.setRequestProperty("Content-length", "0");
+            c.setUseCaches(false);
+            c.setAllowUserInteraction(false);
+            c.connect();
+            int status = c.getResponseCode();
+            System.out.print(status);
+            switch (status) {
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    br.close();
+                    String json = sb.toString();
+                    JSONObject jObj = new JSONObject(json);
+                    //select only first child of hub to display
+                    data[0] = jObj.getString("destinationCoc");
+                    data[1] = jObj.getString("nextResourceId");
+                    data[2] = jObj.getString("nextProcessingAreaId");
+                    data[3] = jObj.getString("nextProcessingAreaName");
+            }
+        } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (ProtocolException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+    public static String[] get2Ddetails(String label,String area)
+    {
+        String data[] = new String[4];
+        String url = "http://flo-fkl-app2.stage.ch.flipkart.com:27015/v1/hos/nextProcessingArea/sortationLabel?processingAreaId="+area;
+        JSONObject object = new JSONObject();
+        try {
+            object.put("label", label);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            URL u = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type",
+                    "application/json");
+            conn.setRequestProperty("charset", "utf-8");
+            conn.setRequestProperty("Content-Length", "" +
+                    Integer.toString(object.toString().getBytes().length));
+            conn.setRequestProperty("Content-Language", "en-US");
+            conn.setUseCaches(false);
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+            conn.connect();
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(
+                    new OutputStreamWriter(os, "UTF-8"));
+            writer.write(object.toString());
+            writer.flush();
+            writer.close();
+            os.close();
+
+            int code = conn.getResponseCode();
+            System.out.println(code);
+            switch (code) {
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    br.close();
+                    String json = sb.toString();
+                    JSONObject jObj = new JSONObject(json);
+                    //select only first child of hub to display
+                    data[0] = jObj.getString("destinationCoc");
+                    data[1] = jObj.getString("nextResourceId");
+                    data[2] = jObj.getString("nextProcessingAreaId");
+                    data[3] = jObj.getString("nextProcessingAreaName");
+            }
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (ProtocolException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        return jArray;
+        return data;
     }
 }

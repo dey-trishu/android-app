@@ -1,5 +1,9 @@
 package com.example.trishudey.hubsystemhelper.repositories;
 
+import android.util.Log;
+
+import org.json.JSONException;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -43,13 +47,11 @@ public class PostToUrl {
 
              code = conn.getResponseCode();
         } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            Log.d("Malformed Url", "Exception");
         } catch (ProtocolException e) {
-            e.printStackTrace();
+            Log.d("Protocol", "Exception");
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.d("I/O", "Exception");
         }
 
         return code;

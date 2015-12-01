@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,6 +41,7 @@ public class HubSubProcessingAreas extends Activity {
     String PAid="";
     String hubId="";
     public static String task;
+    public static String facility;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -967,6 +969,7 @@ public class HubSubProcessingAreas extends Activity {
 
             String data = getIntent().getStringExtra("subarea");
             task = getIntent().getStringExtra("task");
+            facility = getIntent().getStringExtra("facility");
             int i = 0;
             while(data.charAt(i)!='+')
             {
@@ -995,7 +998,7 @@ public class HubSubProcessingAreas extends Activity {
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.d("Exception", "JSON");
         }
         jObj = new JSONObject[jsonArray.length()];
         for(int i=0;i<jsonArray.length();i++)
@@ -1005,7 +1008,7 @@ public class HubSubProcessingAreas extends Activity {
                 jObj[i] = new JSONObject(PA);
 
             } catch (JSONException e) {
-                e.printStackTrace();
+                Log.d("Exception", "JSON");
             }
         }
         get = (Button)findViewById(R.id.button9);
@@ -1047,7 +1050,7 @@ public class HubSubProcessingAreas extends Activity {
                             text[i].setText(jObj[i].getString("name"));
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Log.d("Exception", "JSON");
                     }
                     final int finalI = i;
                     image[i].setOnClickListener(new View.OnClickListener() {
@@ -1059,7 +1062,7 @@ public class HubSubProcessingAreas extends Activity {
                                 startActivity(intent);
                                 finish();
                             } catch (JSONException e) {
-                                e.printStackTrace();
+                                Log.d("Exception", "JSON");
                             }
 
                         }
@@ -1075,11 +1078,11 @@ public class HubSubProcessingAreas extends Activity {
 
                                     if(task.equals("Sortation"))
                                     {
-                                        Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-                                        intent.setPackage("com.google.zxing.client.android");
-                                        intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", "QR_CODE_MODE");//for Qr code, its "QR_CODE_MODE" , for barcode "PRODUCT_MODE"
-                                        intent.putExtra("SAVE_HISTORY", false);//this stops saving ur barcode in barcode scanner app's history
-                                        startActivityForResult(intent, 0);
+                                        Intent intent1 = new Intent(HubSubProcessingAreas.this,NextProcessingArea.class);
+                                        intent1.putExtra("facility",facility);
+                                        intent1.putExtra("processArea",jObj[finalI].getString("id"));
+                                        startActivity(intent1);
+
                                     }
                                     else{
 
@@ -1101,13 +1104,13 @@ public class HubSubProcessingAreas extends Activity {
                                                 startActivity(intent);
                                                 finish();
                                             } catch (JSONException e) {
-                                                e.printStackTrace();
+                                                Log.d("Exception", "JSON");
                                             }
                                         }
                                     }
 
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Log.d("Exception", "JSON");
                                 }
 
                             }
@@ -1158,6 +1161,7 @@ public class HubSubProcessingAreas extends Activity {
         });
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

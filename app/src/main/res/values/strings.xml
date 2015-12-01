@@ -52,4 +52,6 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_pie_chart">PieChart</string>
     <string name="title_activity_d3">D3</string>
+    <string name="title_activity_next_processing_area">NextProcessingArea</string>
+    <string name="title_activity_show_next_area">ShowNextArea</string>
 </resources>

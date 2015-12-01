@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -79,7 +80,7 @@ public class Config extends Activity {
                 }
 
             } catch (JSONException e) {
-                e.printStackTrace();
+                Log.d("Expection","JSON");
             }
         }
 
@@ -104,7 +105,7 @@ public class Config extends Activity {
                                     try {
                                         selectedSlot = jsonGetResponse.jsonObject1[position-1].getString("id");
                                     } catch (JSONException e) {
-                                        e.printStackTrace();
+                                        Log.d("EXception","JSON");
                                     }
 
                                 }

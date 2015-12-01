@@ -159,6 +159,14 @@
             android:name=".Activities.services.hub.D3"
             android:label="@string/title_activity_d3" >
         </activity>
+        <activity
+            android:name=".Activities.services.processingAreas.NextProcessingArea"
+            android:label="@string/title_activity_next_processing_area" >
+        </activity>
+        <activity
+            android:name=".Activities.services.processingAreas.ShowNextArea"
+            android:label="@string/title_activity_show_next_area" >
+        </activity>
     </application>
 
 </manifest>

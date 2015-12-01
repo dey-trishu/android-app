@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -41,6 +42,7 @@ public class HubElements extends Activity {
     CheckBox check[] = new CheckBox[9];
     TextView text[] = new TextView[9];
     public static String hub;
+    public static String facility;
     public static String task;
     JSONArray jArray;
 
@@ -86,6 +88,7 @@ public class HubElements extends Activity {
         Intent in = getIntent();
         hub = in.getStringExtra("com.example.trishudey.MESSAGE");
         task = in.getStringExtra("task");
+        facility = in.getStringExtra("facility");
         JsonParser parser = new JsonParser();
         JSONObject jsonObject[];
         final JSONObject jsonObject1[];
@@ -98,7 +101,7 @@ public class HubElements extends Activity {
                 if (hub.equals(jsonObject[i - 1].getString("name")))
                     hubId = jsonObject[i - 1].getString("hubId");
             } catch (JSONException e) {
-                e.printStackTrace();
+                Log.d("Exception","JSON");
             }
         }
 
@@ -187,18 +190,19 @@ public class HubElements extends Activity {
                                                 Intent intent = new Intent(HubElements.this, HubSubProcessingAreas.class);
                                                 intent.putExtra("subarea", jsonObject1[finalI].getString("mappedProcessingAreas").toString() + "+" + jsonObject1[finalI].getString("id").toString() + "+" + finalHubId);
                                                 intent.putExtra("task", task);
+                                                intent.putExtra("facility",facility);
                                                 startActivity(intent);
 
                                             }
                                         } catch (JSONException e) {
-                                            e.printStackTrace();
+                                            Log.d("Exception","JSON");
                                         }
 
                                     }
                                 }
                             });
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Log.d("Exception", "JSON");
                         }
 
                     }
@@ -215,7 +219,7 @@ public class HubElements extends Activity {
                                     startActivity(intent);
                                     finish();
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Log.d("Exception", "JSON");
                                 }
 
 
@@ -288,7 +292,7 @@ public class HubElements extends Activity {
 
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.d("Exception", "JSON");
 
         }
 

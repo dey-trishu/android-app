@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.StrictMode;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -61,6 +62,7 @@ public class Options_Page_User extends Activity {
         final String type[] = new String[jsonObject.length +1];
         final String coc[] = new String[jsonObject.length+1];
         final String hubId[] = new String[jsonObject.length +1];
+        final String facility[] = new String[jsonObject.length+1];
         coc[0] = "Select Hub";
         for (int i = 1; i <= jsonObject.length; i++) {
             try {
@@ -68,8 +70,9 @@ public class Options_Page_User extends Activity {
                 hubId[i] = jsonObject[i-1].getString("hubId");
                 type[i] = jsonObject[i-1].getString("type");
                 coc[i] = jsonObject[i-1].getString("coc");
+                facility[i] = jsonObject[i-1].getString("facilityServiceId");
             } catch (JSONException e) {
-                e.printStackTrace();
+                Log.d("Exception", "JSON");
             }
         }
         items = coc;
@@ -92,6 +95,7 @@ public class Options_Page_User extends Activity {
                     intent1.putExtra("type", type[position]);
                     intent1.putExtra("coc", coc[position]);
                     intent1.putExtra("hubId",hubId[position]);
+                    intent1.putExtra("facility",facility[position]);
                     startActivity(intent1);
                     finish();
 
