@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/exploded-aar/com.github.bmelnychuk/atv/1.2.7/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d67a52b590d8b38a5ddfea2cc30886c00ecfb731">
+        <dex dex="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/pre-dexed/debug/classes-b163be89bfe6007c4999db92bea15927a92dcf79.jar" />
+    </item>
+    <item
+        jar="/Users/trishu.dey/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1-e9d3ab387bcab74fa3ccff921ecb17785f8cfad2.jar" />
+    </item>
+    <item
+        jar="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/exploded-aar/com.android.support/design/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e5c61a3169221a89654ffcaaed47bba51cf071ad">
+        <dex dex="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/pre-dexed/debug/classes-647935592e8cf7fccd4eba8c308417f98e8d08b5.jar" />
+    </item>
+    <item
+        jar="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/pre-dexed/debug/classes-8b82e9ff107de40265709038012bbb10bd7bfcd9.jar" />
+    </item>
+    <item
+        jar="/Users/trishu.dey/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.2.0/e019d15a13a9786f881141d2df6654b8510bce8b/core-3.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e019d15a13a9786f881141d2df6654b8510bce8b">
+        <dex dex="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/pre-dexed/debug/core-3.2.0-bbe941c7e8f46eee40760c9222a7c7698d328b6e.jar" />
+    </item>
+    <item
+        jar="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
+        <dex dex="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/pre-dexed/debug/classes-c82e8598fdcf593166cdbac750168ffd5e80a121.jar" />
+    </item>
+    <item
+        jar="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/pre-dexed/debug/classes-ba6058f17767b34953d491a9b4edc14beccdc0c9.jar" />
+    </item>
+    <item
+        jar="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/pre-dexed/debug/classes-766997b8494fb77f8b66ad75d1622716f8bed8b0.jar" />
+    </item>
+    <item
+        jar="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1-9165e777979193a623b1903eeccf773bd284d1da.jar" />
+    </item>
+
+</items>

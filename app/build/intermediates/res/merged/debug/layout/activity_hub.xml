@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <TextView
+        android:id="@+id/slot1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Slot 1"
+        android:textAppearance="?android:attr/textAppearanceLarge" android:padding="10px"
+        android:layout_below="@+id/slot4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <SeekBar
+        android:id="@+id/seekBar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="24"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarValue"
+        android:textSize="30dp"
+        android:layout_below="@+id/seekBar1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/slot2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Slot2"
+        android:textAppearance="?android:attr/textAppearanceLarge" android:padding="10px"
+        android:layout_below="@+id/seekBarValue"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <SeekBar
+        android:id="@+id/seekBar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/slot2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:max="24"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarValue2"
+        android:textSize="30dp"
+        android:layout_below="@+id/seekBar2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/slot3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Slot3"
+        android:textAppearance="?android:attr/textAppearanceLarge" android:padding="10px"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/seekBarValue2"
+        android:layout_toEndOf="@+id/seekBarValue2"
+        android:visibility="gone"/>
+    <SeekBar
+        android:id="@+id/seekBar3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slot3"
+        android:visibility="gone"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarValue3"
+        android:textSize="30dp"
+        android:layout_below="@+id/seekBar3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/slot4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Slot4"
+        android:layout_below="@id/seekBar3"
+        android:textAppearance="?android:attr/textAppearanceLarge" android:padding="10px"
+        android:visibility="gone"
+        />
+    <SeekBar
+        android:id="@+id/seekBar4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/slot4"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBarValue4"
+        android:textSize="30dp"
+        android:layout_below="@+id/seekBar4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD SLOT"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout><!-- From: file:/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/src/main/res/layout/activity_hub.xml -->

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hey" />
+
+    <ViewStub
+        android:id="@+id/pie_chart_stub"
+        android:inflatedId="@+id/pie_chart_webview"
+        android:layout="@layout/pie_chart_layout"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+<!-- From: file:/Users/trishu.dey/fk-ekl-facilities-app/HubSystemHelper/app/src/main/res/layout/activity_pie_chart.xml -->

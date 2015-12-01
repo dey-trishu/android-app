@@ -1,0 +1,506 @@
+var margin , width, height,barHeight,barWidth;
+var i;
+var duration ;
+var root;
+var tree;
+var diagonal ;
+var svg ;
+var flare = {};
+var modifiedResponse = {};
+var val;
+var url="";
+var url2="";
+var inc = 0;
+var pos;
+var flare = {};
+var modifiedResponse = {};
+var scan = false;
+function loadPieChart(text,pos) {
+
+    for(var i =0 ;i<text.length;i++)
+    {
+        if(text.charAt(i) != '|')
+            url = url + text.charAt(i);
+        else
+            break;
+    }
+    for(var i = i+1;i<text.length;i++)
+    {
+        if(text.charAt(i) != '|')
+            url2 = url2 + text.charAt(i);
+        else
+            break;
+    }
+
+
+    this.pos = pos;
+    go();
+
+    return 1;
+}
+
+
+function go() {
+
+          margin = { top: 30, right: 20, bottom: 30, left: 20},
+          width = 960 - margin.left - margin.right,
+          height = 4000 - margin.top - margin.bottom;
+          barHeight = 30,
+          barWidth = width * .4;
+          i = 0;
+          duration = 750;
+          root;
+
+          tree = d3.layout.tree()
+                   .size([0, 80]);
+
+          diagonal = d3.svg.diagonal()
+                            .projection(function(d) { return [d.y, d.x - 2]; });
+
+          svg = d3.select("body").append("svg")
+                                .attr("width", width + margin.right + margin.left)
+                                .append("g")
+                                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+//          d3.json(url, function(error,data) {
+//                      if (error) throw error;
+//
+//                            var m = data.data.config;
+//                            var s = m.length;
+//                            val = call(m, s);
+//
+//                        });
+
+          d3.json(url2,function(error,data) {
+                      if (error) throw error;
+
+                            var processArea = data.processingAreas;
+                            var len = processArea[pos].mappedProcessingAreas.length;
+                            callfirst(processArea[pos],len);
+                        });
+
+          function callfirst(m,s)
+                        {
+                            root = m.name;
+                            root.x0 = 0;
+                            root.y0 = 0;
+
+                            var obj = {"name" : root,
+                                       "type" : root.type,
+                                    "children":[]
+                            };
+
+                            var x = m.mappedProcessingAreas;
+                            var k;
+                            var h=[];
+                            var value = [];
+
+                            for(var i = 0;i<s;i++)
+                            {
+                                h[i] = x[i].processingArea;
+                                value[i] = findChild(h[i]);
+
+                                if(value[i].length != 0)
+                                {
+                                    k = {"name" : h[i].name,
+                                         "type" : h[i].type,
+                                         "children" : []
+
+                                    };
+                                    for(var j = 0;j<value[i].length;j++) {
+                                        var c = {
+                                                 "name" : value[i][j].processingArea.name,
+                                                 "type" : value[i][j].processingArea.type,
+
+                                        };
+//                                        for(var p = 0;p<val.length;p++)
+//                                        {
+//                                            if(val[p].name == value[i][j].processingArea.id)
+//                                                c['children'].push(val[p]);
+//                                        }
+
+//                            if(c['children'].length == 0)
+//                            {
+//                                c['name'] = c['name'] + "    (undefined)";
+//                                var t ={
+//                                    "name" : "NIL"
+//                                };
+//                                c['children'].push(t);
+//                            }
+                            k['children'].push(c);
+                                    }
+                                }
+                                else {
+                                    k = {"name" : h[i].name,
+                                         "type" : h[i].type,
+
+                                    };
+//                                    for(var p = 0;p<val.length;p++)
+//                                    {
+//                                        if(val[p].name == h[i].id)
+//                                            k['children'].push(val[p]);
+//                                    }
+//                                     if(k['children'].length == 0)
+//                                     {
+//                                         k['name'] = k['name'] + "    (undefined)";
+//                                         var t ={
+//                                                  "name" : "NIL"
+//                                                };
+//                                         k['children'].push(t);
+//                                     }
+//
+                                }
+                                obj['children'].push(k);
+                            }
+                            root = obj;
+                            console.log(root);
+                            function collapse(d) {
+                                if (d.children) {
+                                    d._children = d.children;
+                                    d._children.forEach(collapse);
+                                    d.children = null;
+                                }
+                            }
+                            root.children.forEach(collapse);
+                            update(root);
+
+                        }
+          function findChild(node)
+            {
+                var x = node.mappedProcessingAreas.length;
+                var val=[];
+                for(var i = 0;i<x;i++) {
+
+
+
+                        val.push(node.mappedProcessingAreas[i]);
+
+                }
+                return val;
+            }
+
+//          function call(m,s){
+//
+//                 var c = 0;
+//                 var values = [];
+//                 var prev=0;
+//                 var prevdest = 0;
+//                 var prevk;
+//
+//                 for (var i=0;i<s;i++) {
+//
+//                      if( m[i].processingAreaId != prev)
+//                            {
+//                                    var l;
+//                                    if(m[i].goodType != null)
+//                                    {
+//                                        l =
+//                                        {
+//                                            "name": ""+ m[i].goodType+""
+//                                        }
+//                                        ;
+//                                    }
+//                                    else {
+//                                        l =
+//                                        {
+//                                            "name": ""+ m[i].flow+""
+//                                        }
+//                                        ;
+//                                    }
+//
+//                                    if(m[i].destinationCoC == null)
+//                                    {
+//                                          var k =
+//                                          {
+//                                             "name": "" +"Destination not Entered"+"",
+//                                             "children":[
+//                                                         l
+//                                                       ]
+//                                          }  ;
+//                                    }
+//                                    else {
+//                                           var k =
+//                                            {
+//                                              "name": "" + m[i].destinationCoC+"",
+//                                              "children":[
+//                                                            l
+//                                                         ]
+//                                            } ;
+//                                         }
+//                                    prevk = k;
+//                                    values.push ({"name" : m[i].processingAreaId,
+//                                        "children" :[
+//                                            k
+//                                        ]});
+//                                    c++;
+//                            }
+//                            else {
+//
+//                                    var l, k;
+//                                    for(var j =i;j<s;j++)
+//                                    {
+//                                        if(m[j].processingAreaId == prev)
+//                                        {
+//                                            if(m[i].goodType != null)
+//                                            {
+//                                                l =
+//                                                {
+//                                                    "name": ""+ m[i].goodType+""
+//                                                }
+//                                                ;
+//                                            }
+//                                            if (m[j].goodType == null){
+//                                                l =
+//                                                {
+//                                                    "name": ""+ m[j].flow+""
+//                                                }
+//                                                ;
+//                                            }
+//
+//                                            if(j-1 >=0 && m[j].destinationCoC == m[j-1].destinationCoC)
+//                                            {
+//                                                prevk['children'].push(l);
+//                                                k = prevk;
+//                                                if(j+1<s && j>=i && (m[j+1].destinationCoC != m[j].destinationCoC)) {
+//                                                    i=j;
+//                                                    j = s;
+//                                                    break;
+//                                                }
+//                                            }
+//                                            else {
+//
+//
+//
+//                                               if(m[i].destinationCoC == null)
+//                                               {
+//                                                     var k =
+//                                                     {
+//                                                           "name": "" +"Destination not Entered"+"",
+//                                                           "children":[
+//                                                                         l
+//                                                                      ]
+//                                                      }  ;
+//                                               }
+//                                              else {
+//                                                     var k =
+//                                                     {
+//                                                            "name": "" + m[i].destinationCoC+"",
+//                                                            "children":[
+//                                                                        l
+//                                                                     ]
+//                                                     } ;
+//                                                 }
+//                                                prevk = k;
+//
+//
+//                                                if(j+1<s && j>=i && m[j+1].destinationCoC != m[j].destinationCoC) {
+//                                                    if(j+1<s && i==j)
+//                                                        i = j;
+//                                                    else
+//                                                        i = j;
+//                                                    j = s;
+//                                                    break;
+//                                                }
+//
+//
+//                                            }
+//                                        }
+//                                    }
+//
+//
+//
+//                                    values[c-1].children.push(k);
+//
+//
+//
+//
+//                            }
+//
+//
+//                                prev = m[i].processingAreaId;
+//                                prevdest = m[i].destinationCoC;
+//                      }
+//
+//                            return values;
+//                 }
+
+
+          d3.select(self.frameElement).style("height", "800px");
+}
+
+
+
+
+
+
+function update(source) {
+
+// Compute the new tree layout.
+var nodes = tree.nodes(root),
+                    links = tree.links(nodes);
+height = Math.max(500, nodes.length * barHeight + margin.top + margin.bottom);
+d3.select("svg").transition()
+                    .duration(duration)
+                    .attr("height", height);
+
+d3.select(self.frameElement).transition()
+                    .duration(duration)
+                    .style("height", height + "px");
+// Normalize for fixed-depth.
+nodes.forEach(function (n, i) {
+                n.x = i * barHeight;
+            });
+            nodes.forEach(function(d) { d.y = d.depth * 100; });
+// Update the nodes…
+var node = svg.selectAll("g.node")
+                    .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+// Enter any new nodes at the parent's previous position.
+var nodeEnter = node.enter().append("g")
+                    .attr("class", "node")
+                    .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+                    .style("opacity", 1e-6)
+                    .on("click", click);
+
+            nodeEnter.append("rect")
+                    .attr("y", -barHeight / 2)
+                    .attr("height", barHeight - 5)
+                    .attr("width", barWidth)
+                    .style("fill", color)
+                    ;
+
+
+
+            nodeEnter.append("text")
+                    .attr("dy", 3.5)
+                    .attr("dx", 162)
+                    .text(function(d) { return d.name; })
+                    .style("fill-opacity", 1e-6);
+
+            // for inserting images into nodes
+                        nodeEnter.append("image")
+                                .attr("y", -19)
+                                .attr("x", 5.5)
+                                .attr("xlink:href", function(d){
+                                    if(d.type === "BIN"){
+                                        return "bin.png";
+                                    }
+                                    else if(d.type === "STATION"){
+                                        return "station.jpg"
+                                    }
+                                })
+                                .attr("width", 20)
+                                .attr("height", 35);
+
+            // Transition nodes to their new position.
+            nodeEnter.transition()
+                    .duration(duration)
+                    .attr("transform", function (d) {
+                        return "translate(" + d.y + "," + d.x + ")";
+                    })
+                    .style("opacity", 1);
+
+            node.transition()
+                    .duration(duration)
+                    .attr("transform", function (d) {
+                        return "translate(" + d.y + "," + d.x + ")";
+                    })
+                    .style("opacity", 1)
+                    .select("rect")
+                    .style("fill", color);
+// Transition exiting nodes to the parent's new position.
+var nodeExit = node.exit().transition()
+                    .duration(duration)
+                    .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+                    .remove();
+
+            nodeExit.select("rect")
+                    .attr("y", -barHeight / 2)
+                    .attr("height", barHeight - 5)
+                    .attr("width", barWidth);
+
+            nodeExit.select("text")
+                    .style("fill-opacity", 1e-6);
+
+// Update the links…
+var link = svg.selectAll("path.link")
+                    .data(links, function(d) { return d.target.id; });
+
+            // Enter any new links at the parent's previous position.
+            link.enter().insert("path", "g")
+                    .attr("class", "link")
+                    .attr("d", function(d) {
+                        var o = {x: source.x0, y: source.y0};
+                        return diagonal({source: o, target: o});
+                    });
+
+            // Transition links to their new position.
+            link.transition()
+                    .duration(duration)
+                    .attr("d", diagonal);
+
+            // Transition exiting nodes to the parent's new position.
+            link.exit().transition()
+                    .duration(duration)
+                    .attr("d", function(d) {
+                        var o = {x: source.x, y: source.y};
+                        return diagonal({source: o, target: o});
+                    })
+                    .remove();
+
+            // Stash the old positions for transition.
+            nodes.forEach(function(d) {
+                d.x0 = d.x;
+                d.y0 = d.y;
+            });
+          }
+
+        // Toggle children on click.
+function click(d) {
+inc ++;
+        if (d.children) {
+                d._children = d.children;
+                d.children = null;
+            } else {
+                d.children = d._children;
+                d._children = null;
+            }
+            if(d.children == null)
+                scan = true;
+            update(d);
+}
+
+function color(d) { // color coding of buckets [bin with higher configurations are configured differently]
+        var rectColor="#3182bd";
+           if(d._children){
+                 rectColor= "#3182bd";
+                    }
+           else{
+                   if(d.children != null){
+                            rectColor= "#c6dbef";
+                    }
+                    else{
+                            if (d.type != "BIN") {
+                                rectColor= "#f6854e"
+                            }
+                            else{
+                                if(d.type == "BIN"){
+                                    rectColor= "#f6854e"
+                                }
+                                else {
+                                    if (d.type == "STATION") {
+                                        rectColor = "#c88585"
+                                    }
+                                    else {
+                                        if (d.type == "BIN") {
+                                            rectColor = "#bf5959"
+                                        }
+                                        else {
+                                            rectColor = "#c90000"
+                                 }
+                              }
+                         }
+                   }
+              }
+        }
+        return rectColor;
+}
