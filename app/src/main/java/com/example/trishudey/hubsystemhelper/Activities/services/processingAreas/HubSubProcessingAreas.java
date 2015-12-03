@@ -967,28 +967,13 @@ public class HubSubProcessingAreas extends Activity {
         //get content from intent
         try {
 
-            String data = getIntent().getStringExtra("subarea");
+            subarea = getIntent().getStringExtra("subarea");
             task = getIntent().getStringExtra("task");
             facility = getIntent().getStringExtra("facility");
             int i = 0;
-            while(data.charAt(i)!='+')
-            {
+            PAid = getIntent().getStringExtra("PAid");
+            hubId = getIntent().getStringExtra("hubId1");
 
-                subarea = subarea + data.charAt(i);
-                i++;
-            }
-            i++;
-            while(data.charAt(i)!='+')
-            {
-                PAid = PAid  + data.charAt(i);
-                i++;
-            }
-            i++;
-            while(i<data.length())
-            {
-                hubId = hubId + data.charAt(i);
-                i++;
-            }
             jsonArray = new JSONArray(subarea);
 
             jsonObject1 = new JSONObject[jsonArray.length()];
@@ -1099,7 +1084,9 @@ public class HubSubProcessingAreas extends Activity {
                                         } else {
                                             Intent intent = new Intent(HubSubProcessingAreas.this, HubSubProcessingAreas.class);
                                             try {
-                                                intent.putExtra("subarea", jObj[finalI].getString("mappedProcessingAreas").toString() + "+" + jObj[finalI].getString("id") + "+" + hubId);
+                                                intent.putExtra("subarea", jObj[finalI].getString("mappedProcessingAreas").toString() );
+                                                intent.putExtra("PAid", jObj[finalI].getString("id"));
+                                                intent.putExtra("hubId1",hubId);
                                                 intent.putExtra("task","Bagging");
                                                 startActivity(intent);
                                                 finish();
@@ -1121,7 +1108,7 @@ public class HubSubProcessingAreas extends Activity {
 
                 if(LoginPage.user.equals("admin"))
                 {
-                    for(int i = jsonArray.length();i<304;i++)
+                    for(int i = jsonArray.length();i<58;i++)
                     {
 
                         check[i].setVisibility(v.VISIBLE);

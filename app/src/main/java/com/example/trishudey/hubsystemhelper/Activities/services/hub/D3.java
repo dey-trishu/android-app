@@ -60,15 +60,7 @@ public class D3 extends Activity {
     @JavascriptInterface
     public void onData(String value) {
         //.. do something with the data
-        if(value.equals("1"))
-        {
-            Intent intent = new Intent("com.google.zxing.client.android.SCAN");
-            intent.setPackage("com.google.zxing.client.android");
-            intent.putExtra("com.google.zxing.client.android.SCAN.SCAN_MODE", "QR_CODE_MODE");//for Qr code, its "QR_CODE_MODE" , for barcode "PRODUCT_MODE"
-            intent.putExtra("SAVE_HISTORY", false);//this stops saving ur barcode in barcode scanner app's history
-            startActivityForResult(intent, 0);
-        }
-
+        //not required
 
 
     }

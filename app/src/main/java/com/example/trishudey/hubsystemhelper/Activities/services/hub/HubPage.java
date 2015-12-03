@@ -93,7 +93,7 @@ public class HubPage extends Activity {
         textView.setText("Welcome to " + m);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView)findViewById(R.id.navListhub);
-        String[] serviceArray = { "SCAN","HUB AREAS","GET CONFIG","BACK" };
+        String[] serviceArray = { "SCAN","GET CONFIG","BACK" };
         mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, serviceArray);
         mDrawerList.setAdapter(mAdapter);
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -113,13 +113,8 @@ public class HubPage extends Activity {
                         intent.putExtra("SAVE_HISTORY", false);//this stops saving ur barcode in barcode scanner app's history
                         startActivityForResult(intent, 0);
                         break;
-                    case 1:
-                        Intent intent1 = new Intent(HubPage.this, HubElements.class);
-                        intent1.putExtra(EXTRA_MESSAGE, message);
-                        startActivity(intent1);
 
-                        break;
-                    case 2:
+                    case 1:
                         Intent intent2 = new Intent(HubPage.this, Config.class);
                         intent2.putExtra(EXTRA_MESSAGE, message);
                         intent2.putExtra("hubId",hubId);
@@ -127,7 +122,7 @@ public class HubPage extends Activity {
 
                         break;
 
-                    case 3:
+                    case 2:
                         Intent in = getIntent();
                         String send = in.getStringExtra("callBack");
                         if (LoginPage.user.equals("admin")) {

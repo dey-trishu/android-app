@@ -188,7 +188,9 @@ public class HubElements extends Activity {
 
                                             } else {
                                                 Intent intent = new Intent(HubElements.this, HubSubProcessingAreas.class);
-                                                intent.putExtra("subarea", jsonObject1[finalI].getString("mappedProcessingAreas").toString() + "+" + jsonObject1[finalI].getString("id").toString() + "+" + finalHubId);
+                                                intent.putExtra("subarea", jsonObject1[finalI].getString("mappedProcessingAreas").toString());
+                                                intent.putExtra("PAid",  jsonObject1[finalI].getString("id").toString() );
+                                                intent.putExtra("hubId1", finalHubId);
                                                 intent.putExtra("task", task);
                                                 intent.putExtra("facility",facility);
                                                 startActivity(intent);

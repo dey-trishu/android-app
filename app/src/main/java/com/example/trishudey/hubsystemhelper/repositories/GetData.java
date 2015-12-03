@@ -38,7 +38,7 @@ public class GetData {
 
 
             String response = jsonGetResponse.validateUser(validationUrl);
-            if (response.equals(password)) {
+            if (response != null && response.equals(password)) {
                 return true;
             }
         }

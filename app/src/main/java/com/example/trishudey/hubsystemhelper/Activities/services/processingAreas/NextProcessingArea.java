@@ -71,13 +71,26 @@ public class NextProcessingArea extends Activity {
                 else
                 {
                     data = jsonGetResponse.get2Ddetails(contents,area);
-                    Context context = getApplicationContext();
-                    CharSequence text = "DESTINATION : "+ data[0]+"\n"+"NEXT PROCESSING AREA NAME : "+ data[3]+"\n";
-                    int duration = Toast.LENGTH_SHORT;
-                    //Show a toast to inform the user
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
-                    toast.show();
+                    if(data[0] != null)
+                    {
+
+                        Context context = getApplicationContext();
+                        CharSequence text = "DESTINATION : "+ data[0]+"\n"+"NEXT PROCESSING AREA NAME : "+ data[3]+"\n";
+                        int duration = Toast.LENGTH_SHORT;
+                        //Show a toast to inform the user
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
+                        toast.show();
+                    }
+                    else {
+                        Context context = getApplicationContext();
+                        CharSequence text = "DATA UNAVAILABLE";
+                        int duration = Toast.LENGTH_SHORT;
+                        //Show a toast to inform the user
+                        Toast toast = Toast.makeText(context, text, duration);
+                        toast.setGravity(Gravity.BOTTOM | Gravity.CENTER, 0, 0);
+                        toast.show();
+                    }
                 }
 
 
